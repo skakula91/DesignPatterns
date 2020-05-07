@@ -1,4 +1,7 @@
 ﻿using DesignPatterns.CompositePattern.Component;
+using DesignPatterns.DecoratorPattern.Component;
+using DesignPatterns.DecoratorPattern.ConcreteComponent;
+using DesignPatterns.DecoratorPattern.ConcreteDecorator;
 using System;
 
 namespace DesignPatterns
@@ -28,7 +31,13 @@ namespace DesignPatterns
                 DirectReports = { mgr1, mgr2 }
             };
 
-            mgrGlobal.GetInfo();
+            //mgrGlobal.GetInfo();
+
+            //2. Decorator Pattern - Used when the object needs to be extended without effecting the concrete implementation
+            ICar car = new EconomyCar();
+            var cardecorator = new FinalOffer(car);
+            Console.WriteLine($"Make:{cardecorator.Make},OriginalPrice:{cardecorator.Price().ToString()}, " +
+                $"AfterDiscount:{cardecorator.GetDiscount()}");
             Console.ReadLine();
         }
     }
